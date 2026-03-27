@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTypes2", "DataTypes2\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetailNetworkConsole2", "RetailNetworkConsole2\RetailNetworkConsole2.csproj", "{1BA05573-71C7-DB73-7BE4-2CA9D68B339E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTrackingApp", "TimeTrackingApp\TimeTrackingApp.csproj", "{73B959D1-5B0E-412F-A4BF-333CBDB39984}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1BA05573-71C7-DB73-7BE4-2CA9D68B339E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BA05573-71C7-DB73-7BE4-2CA9D68B339E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BA05573-71C7-DB73-7BE4-2CA9D68B339E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73B959D1-5B0E-412F-A4BF-333CBDB39984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73B959D1-5B0E-412F-A4BF-333CBDB39984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73B959D1-5B0E-412F-A4BF-333CBDB39984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73B959D1-5B0E-412F-A4BF-333CBDB39984}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
