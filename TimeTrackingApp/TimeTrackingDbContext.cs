@@ -22,7 +22,18 @@ namespace TimeTrackingApp
         {
             base.OnModelCreating(modelBuilder);
 
-            
+            modelBuilder.Entity<Project>()
+                .HasIndex(p => p.Code)
+                .IsUnique();
+
+            modelBuilder.Entity<Entities.Task>()
+                .HasIndex(t => new {t.ProjectId, t.Name })
+                .IsUnique();
+
+            modelBuilder.Entity<TimeEntry>()
+                .HasIndex(te => new { te.Date, te.TaskId });
+
+
         }
     }
 }
