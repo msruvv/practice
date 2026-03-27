@@ -21,5 +21,7 @@ namespace TimeTrackingApp.Entities
         public string Code { get; set; } = string.Empty;
 
         public bool IsActive { get; set; } = true;
+
+        public virtual ICollection<Task> Tasks { get; set; } = new List<Task>();
     }
 }

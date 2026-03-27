@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TimeTrackingApp.Entities
 {
-    internal class TimeEntry
+    public class TimeEntry
     {
         [Key]
         public int Id { get; set; }
@@ -24,5 +24,7 @@ namespace TimeTrackingApp.Entities
 
         [Required]
         public int TaskId { get; set; }
+
+        public virtual Task? Task { get; set; }
     }
 }
