@@ -33,7 +33,17 @@ namespace TimeTrackingApp
             modelBuilder.Entity<TimeEntry>()
                 .HasIndex(te => new { te.Date, te.TaskId });
 
+            modelBuilder.Entity<Entities.Task>()
+                .HasOne(t => t.Project)
+                .WithMany(p => p.Tasks)
+                .HasForeignKey(t => t.ProjectId)
+                .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<TimeEntry>()
+                .HasOne(te => te.Task)
+                .WithMany(t => t.TimeEntries)
+                .HasForeignKey(te => te.TaskId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
