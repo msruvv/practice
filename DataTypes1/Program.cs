@@ -8,6 +8,10 @@ namespace DataTypes1
 {
     internal class Program
     {
+        private const double InitialDeposit = 1000;
+        private const int Years = 3;
+        private const double InterestRate = 10;
+
         public static double[] CalculateCompoundInterest(double initial_deposit, int years, double interest_rate)
         {
             double[] amounts = new double[years];
@@ -33,7 +37,7 @@ namespace DataTypes1
 
         static void Main(string[] args)
         {
-            double[] results = CalculateCompoundInterest(1000, 3, 10);
+            double[] results = CalculateCompoundInterest(InitialDeposit, Years, InterestRate);
             PrintResults(results);
         }
     }
