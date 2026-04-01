@@ -8,38 +8,6 @@ namespace OOP
 {
     internal class Program
     {
-        public class Product
-        {
-            private string _name;
-            private string _manufacturer;
-            private decimal _price;
-            private DateTime _productionDate;
-            private DateTime _expirationDate;
-
-            public Product (string name, string manufacturer, decimal price, DateTime productionDate, DateTime expirationDate)
-            {
-                Name = name;
-                Manufacturer = manufacturer;
-                Price = price;
-                ProductionDate = productionDate;
-                ExpirationDate = expirationDate;
-            }
-
-            public string Name { get => _name; set => _name = value; }
-            public string Manufacturer { get => _manufacturer; set => _manufacturer = value; }
-            public decimal Price { get => _price; set => _price = value; }
-            public DateTime ProductionDate { get => _productionDate; set => _productionDate = value; }
-            public DateTime ExpirationDate { get => _expirationDate; set => _expirationDate = value; }
-
-            public override string ToString()
-            {
-                return $"Товар: {Name}\n" +
-                       $"Производитель: {Manufacturer}\n" +
-                       $"Цена: {Price:F2} руб.\n" +
-                       $"Дата производства: {ProductionDate:dd.MM.yyyy}\n" +
-                       $"Срок годности: {ExpirationDate:dd.MM.yyyy}";
-            }
-        }
         static void Main(string[] args)
         {
             try
