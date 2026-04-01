@@ -23,14 +23,10 @@ namespace DataTypes2
 
                 for (var col = 0; col < N; col++)
                 {
-                    if (col == leftXPosition || col == rightXPosition)
-                    {
-                        diamond[row][col] = 'X';
-                    }
-                    else
-                    {
-                        diamond[row][col] = ' ';
-                    }
+                    diamond[row][col] =
+                        col == leftXPosition || col == rightXPosition
+                        ? 'X'
+                        : ' ';
                 }
             }
 
