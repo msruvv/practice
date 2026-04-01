@@ -8,20 +8,22 @@ namespace DataTypes2
 {
     internal class Program
     {
-        private static char[][] CreateDiamond(int N)
-        {
-            int middle = N / 2;
-            char[][] diamond = new char[N][];
+        private const int DiamontSize = 5;
 
-            for (var row = 0; row < N; row++)
+        private static char[][] CreateDiamond(int n)
+        {
+            int middle = n / 2;
+            char[][] diamond = new char[n][];
+
+            for (var row = 0; row < n; row++)
             {
                 int distanceFromCenter = Math.Abs(row - middle);
                 int leftXPosition = distanceFromCenter;
-                int rightXPosition = N - 1 - distanceFromCenter;
+                int rightXPosition = n - 1 - distanceFromCenter;
 
-                diamond[row] = new char[N];
+                diamond[row] = new char[n];
 
-                for (var col = 0; col < N; col++)
+                for (var col = 0; col < n; col++)
                 {
                     diamond[row][col] =
                         col == leftXPosition || col == rightXPosition
@@ -50,7 +52,7 @@ namespace DataTypes2
 
         static void Main(string[] args)
         {
-            PrintDiamond(5);
+            PrintDiamond(DiamontSize);
         }
     }
 }
