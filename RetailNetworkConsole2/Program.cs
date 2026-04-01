@@ -34,18 +34,19 @@ namespace RetailNetworkConsole
 
             while (true)
             {
-                Console.WriteLine("\nВыберите действие:");
-                Console.WriteLine("1. ADO.NET - показать всех продавцов");
-                Console.WriteLine("2. ADO.NET - добавить нового продавца");
-                Console.WriteLine("3. ADO.NET - обновить данные продавца");
-                Console.WriteLine("4. ADO.NET - удалить продавца");
-                Console.WriteLine("5. ADO.NET - показать продавца по ID");
-                Console.WriteLine("6. Entity Framework - показать всех продавцов");
-                Console.WriteLine("7. Entity Framework - добавить продавца");
-                Console.WriteLine("8. Entity Framework - обновить продавца");
-                Console.WriteLine("9. Entity Framework - удалить продавца");
-                Console.WriteLine("10. Entity Framework - показать продавца по ID");
-                Console.WriteLine("0. Выход");
+                Console.WriteLine(
+                    $"\nВыберите действие:\n" +
+                    $"1. ADO.NET - показать всех продавцов\n" +
+                    $"2. ADO.NET - добавить нового продавца\n" +
+                    $"3. ADO.NET - обновить данные продавца\n" +
+                    $"4. ADO.NET - удалить продавца\n" +
+                    $"5. ADO.NET - показать продавца по ID\n" +
+                    $"6. Entity Framework - показать всех продавцов\n" +
+                    $"7. Entity Framework - добавить продавца\n" +
+                    $"8. Entity Framework - обновить продавца\n" +
+                    $"9. Entity Framework - удалить продавца\n" +
+                    $"10. Entity Framework - показать продавца по ID\n" +
+                    $"0. Выход");
 
                 Console.Write("\nВаш выбор: ");
                 var choice = Console.ReadLine();
@@ -96,28 +97,15 @@ namespace RetailNetworkConsole
                 {
                     Console.WriteLine($"Ошибка: {ex.Message}");
                     if (ex.InnerException != null)
+                    {
                         Console.WriteLine($"Внутренняя ошибка: {ex.InnerException.Message}");
+                    }
                 }
 
                 Console.WriteLine("\nНажмите любую клавишу для продолжения...");
-                Console.ReadKey(); Console.Clear();
+                Console.ReadKey();
+                Console.Clear();
             }
-        }
-
-        static void PrintSellerInfo(Seller? seller)
-        {
-            if (seller == null)
-            {
-                Console.WriteLine("Продавец не найден");
-                return;
-            }
-
-            Console.WriteLine($"ID: {seller.SellerID}");
-            Console.WriteLine($"Фамилия: {seller.LastName}");
-            Console.WriteLine($"Имя: {seller.FirstName}");
-            Console.WriteLine($"Отчество: {seller.Patronymic ?? "не указано"}");
-            Console.WriteLine($"Дата рождения: {seller.BirthDate:dd.MM.yyyy}");
-            Console.WriteLine($"Активен: {(seller.IsActive ? "Да" : "Нет")}");
         }
 
         static async Task ShowAllSellersAsync(ISellerService service)
@@ -126,7 +114,7 @@ namespace RetailNetworkConsole
             var sellers = await service.ReadAllSellersAsync();
 
             foreach (var seller in sellers)
-                PrintSellerInfo(seller);
+                seller.ToString();
         }
 
         static async Task AddNewSellerAsync(ISellerService service)
@@ -162,7 +150,7 @@ namespace RetailNetworkConsole
 
             Seller newSeller = await service.CreateSellerAsync(seller);
             Console.WriteLine($"Продавец добавлен\n");
-            PrintSellerInfo(newSeller);
+            newSeller.ToString();
         }
 
         static async Task UpdateSellerAsync(ISellerService service)
@@ -184,7 +172,7 @@ namespace RetailNetworkConsole
             }
 
             Console.WriteLine($"\nТекущие данные продавца:");
-            PrintSellerInfo(existingSeller);
+            existingSeller.ToString();
 
             Console.WriteLine("\nВведите новые данные:");
 
@@ -201,19 +189,28 @@ namespace RetailNetworkConsole
             Console.Write($"Отчество ({existingSeller.Patronymic ?? "не указано"}): ");
             string patronymic = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(patronymic))
+            {
                 existingSeller.Patronymic = patronymic;
+            }
             else if (patronymic == "")
+            {
                 existingSeller.Patronymic = null;
+            }
 
             Console.Write($"Дата рождения ({existingSeller.BirthDate:dd.MM.yyyy}): ");
             string birthDateStr = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(birthDateStr) && DateTime.TryParse(birthDateStr, out DateTime newBirthDate))
+            if (!string.IsNullOrWhiteSpace(birthDateStr)
+                && DateTime.TryParse(birthDateStr, out DateTime newBirthDate))
+            {
                 existingSeller.BirthDate = newBirthDate;
+            }
 
             Console.Write($"Активен (1/0) ({(existingSeller.IsActive ? 1 : 0)}): ");
             string isActiveStr = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(isActiveStr))
+            {
                 existingSeller.IsActive = true;
+            }
 
             bool result = await service.UpdateSellerAsync(existingSeller);
 
@@ -222,12 +219,13 @@ namespace RetailNetworkConsole
                 Console.WriteLine($"\nПродавец с ID {id} успешно обновлен!");
                 var updated = await service.GetSellerByIdAsync(id);
                 Console.WriteLine($"\nОбновленные данные:");
-                PrintSellerInfo(updated);
+                updated.ToString();
             }
             else
+            {
                 Console.WriteLine($"\nНе удалось обновить продавца с ID {id}");
+            }
         }
-
         static async Task DeleteSellerAsync(ISellerService service)
         {
             Console.WriteLine("\n--- УДАЛЕНИЕ ПРОДАВЦА ---");
@@ -253,11 +251,14 @@ namespace RetailNetworkConsole
             if (confirm == "да")
             {
                 bool result = await service.DeleteSellerAsync(id);
-                Console.WriteLine(result ? $"Продавец с ID {id} успешно удален"
+                Console.WriteLine(result
+                    ? $"Продавец с ID {id} успешно удален"
                     : $"Не удалось удалить продавца с ID {id}");
             }
             else
+            {
                 Console.WriteLine("Удаление отменено");
+            }
         }
 
         static async Task GetSellerByIdAsync(ISellerService service)
@@ -274,9 +275,13 @@ namespace RetailNetworkConsole
             var seller = await service.GetSellerByIdAsync(id);
 
             if (seller == null)
+            {
                 Console.WriteLine($"Продавец с ID {id} не найден");
+            }
             else
-                PrintSellerInfo(seller);
+            {
+                seller.ToString();
+            }
         }
     }
 }

@@ -18,5 +18,15 @@ namespace RetailNetworkConsole2.Models
         public ContactInfo? ContactInfo { get; set; }
         public ICollection<ShopSeller> ShopSellers { get; set; } = new List<ShopSeller>();
         public ICollection<Receipt> Receipts { get; set; } = new List<Receipt>();
+
+        public override string ToString()
+        {
+            return $"ID: {SellerID}\n" +
+                   $"Фамилия: {LastName}\n" +
+                   $"Имя: {FirstName}\n" +
+                   $"Отчество: {Patronymic ?? "не указано"}\n" +
+                   $"Дата рождения: {BirthDate:dd.MM.yyyy}\n" +
+                   $"Активен: {(IsActive ? "Да" : "Нет")}";
+        }
     }
 }
