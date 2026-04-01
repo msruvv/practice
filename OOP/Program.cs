@@ -14,21 +14,17 @@ namespace OOP
             {
                 Console.WriteLine("Введите информацию о товаре:");
 
-                Console.Write("Наименование: ");
-                string name = Console.ReadLine();
-
-                Console.Write("Производитель: ");
-                string manufacturer = Console.ReadLine();
-
-                Console.Write("Цена: ");
-                decimal price = decimal.Parse(Console.ReadLine());
-
-                Console.Write("Дата производства (дд.мм.гггг): ");
-                DateTime productionDate = DateTime.ParseExact(Console.ReadLine(), "dd.mm.yyyy", null);
-
-                Console.Write("Срок годности (дд.мм.гггг): ");
-                DateTime expirationDate = DateTime.ParseExact(Console.ReadLine(), "dd.mm.yyyy", null);
-
+                string name = GetStringFromConsole("Наименование: ");
+                string manufacturer = GetStringFromConsole("Производитель: ");
+                decimal price = decimal.Parse(GetStringFromConsole("Цена: "));
+                DateTime productionDate = DateTime.ParseExact(
+                    GetStringFromConsole("Дата производства (дд.мм.гггг): "),
+                    "dd.MM.yyyy",
+                    null);
+                DateTime expirationDate = DateTime.ParseExact(
+                    GetStringFromConsole("Срок годности (дд.мм.гггг): "),
+                    "dd.MM.yyyy",
+                    null);
                 Product product = new Product(name, manufacturer, price, productionDate, expirationDate);
 
                 Console.WriteLine("\nИнформация о товаре:");
@@ -38,6 +34,12 @@ namespace OOP
             {
                 Console.WriteLine($"Ошибка: {ex.Message}");
             }
+        }
+
+        static string GetStringFromConsole(string prompt)
+        {
+            Console.Write(prompt);
+            return Console.ReadLine();
         }
     }
 }
