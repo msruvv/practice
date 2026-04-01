@@ -25,6 +25,7 @@ namespace OOP
                     GetStringFromConsole("Срок годности (дд.мм.гггг): "),
                     "dd.MM.yyyy",
                     null);
+
                 Product product = new Product(name, manufacturer, price, productionDate, expirationDate);
 
                 Console.WriteLine("\nИнформация о товаре:");

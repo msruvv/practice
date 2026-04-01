@@ -30,14 +30,18 @@ namespace Task4
             {
                 int count = 0;
                 foreach (T item in collection)
+                {
                     count++;
+                }
 
                 _items = new T[count];
                 _count = count;
 
                 int index = count - 1;
                 foreach (var item in collection)
+                {
                     _items[index--] = item;
+                }
             }
 
             public int Count => _count;
@@ -47,7 +51,9 @@ namespace Task4
             public void Push(T item)
             {
                 if (_count == _items.Length)
-                    Array.Resize(ref _items, _items.Length*2);
+                {
+                    Array.Resize(ref _items, _items.Length * 2);
+                }
 
                 _items[_count++] = item;
             }
@@ -55,8 +61,10 @@ namespace Task4
             public void PushRange(IEnumerable<T> collection)
             {
                 int itemsToAdd = 0;
-                foreach(T item in collection) 
+                foreach (T item in collection)
+                {
                     itemsToAdd++;
+                }
                 int newCount = _count + itemsToAdd;
 
                 if (newCount > _items.Length)
@@ -68,15 +76,19 @@ namespace Task4
                     }
                     Array.Resize(ref _items, newCapacity);
                 }
-                
+
                 foreach (var item in collection)
+                {
                     _items[_count++] = item;
+                }
             }
 
             public T Pop()
             {
-                if (_count == 0 )
+                if (_count == 0)
+                {
                     throw new InvalidOperationException("Стек пуст");
+                }
 
                 T item = _items[--_count];
                 _items[_count] = default(T);
@@ -85,8 +97,10 @@ namespace Task4
 
             public T Peek()
             {
-                if (_count == 0 )
+                if (_count == 0)
+                {
                     throw new InvalidOperationException("Стек пуст");
+                }
 
                 return _items[_count - 1];
             }
@@ -96,7 +110,9 @@ namespace Task4
                 for (var i = 0; i < _count; i++)
                 {
                     if (Equals(_items[i], item))
+                    {
                         return true;
+                    }
                 }
                 return false;
             }
@@ -106,7 +122,9 @@ namespace Task4
                 get
                 {
                     if (index < 0 || index >= _count)
+                    {
                         throw new ArgumentOutOfRangeException(nameof(index));
+                    }
 
                     return _items[_count - 1 - index];
                 }
@@ -114,7 +132,9 @@ namespace Task4
                 set
                 {
                     if (index < 0 || index >= _count)
+                    {
                         throw new ArgumentOutOfRangeException(nameof(index));
+                    }
 
                     _items[_count - 1 - index] = value;
                 }
@@ -122,8 +142,10 @@ namespace Task4
 
             public IEnumerator<T> GetEnumerator()
             {
-                for (var i = _count-1; i>=0; i--)
+                for (var i = _count - 1; i >= 0; i--)
+                {
                     yield return _items[i];
+                }
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -154,7 +176,9 @@ namespace Task4
 
             Console.WriteLine("Все элементы:");
             foreach (var item in stack)
+            {
                 Console.WriteLine(item);
+            }
 
             var list = new List<int> { 1, 2, 3 };
             var stack2 = new SmartStack<int>(list);
