@@ -35,7 +35,7 @@ namespace DataTypes2
 
         public static void PrintDiamond(int N)
         {
-            char[][] diamond = CreateDiamond(N);
+            var diamond = CreateDiamond(N);
 
             for (var row = 0; row < diamond.Length; row++)
             {
