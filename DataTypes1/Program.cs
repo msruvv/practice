@@ -8,25 +8,33 @@ namespace DataTypes1
 {
     internal class Program
     {
-        public static string CalculateCompoundInterest(double initial_deposit, int years, double interest_rate)
+        public static double[] CalculateCompoundInterest(double initial_deposit, int years, double interest_rate)
         {
-            var result = new StringBuilder();
+            double[] amounts = new double[years];
             double currentAmount = initial_deposit;
             double rateMultiplier = 1 + interest_rate / 100;
 
             for (var i = 1; i <= years; i++)
             {
                 currentAmount *= rateMultiplier;
-                string yearLine = $"Год {i}: {currentAmount:F2} руб.";
-                result.AppendLine(yearLine);
+                amounts[i] = currentAmount;
             }
 
-            return result.ToString();
+            return amounts;
+        }
+
+        public static void PrintResults(double[] results)
+        {
+            for (int i = 0; i < results.Length; i++)
+            {
+                Console.WriteLine($"Год {i + 1}: {results[i]:F2} руб.");
+            }
         }
 
         static void Main(string[] args)
         {
-            Console.WriteLine(CalculateCompoundInterest(1000, 3, 10));
+            double[] results = CalculateCompoundInterest(1000, 3, 10);
+            PrintResults(results);
         }
     }
 }
