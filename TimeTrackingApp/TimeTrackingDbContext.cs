@@ -10,8 +10,7 @@ namespace TimeTrackingApp
 {
     public class TimeTrackingDbContext : DbContext
     {
-        public TimeTrackingDbContext(DbContextOptions<TimeTrackingDbContext> options)
-            : base(options)
+        public TimeTrackingDbContext(DbContextOptions<TimeTrackingDbContext> options) : base(options)
         {    
         }
 
