@@ -14,16 +14,28 @@ using static RetailNetworkConsole.Program;
 
 namespace RetailNetworkConsole2.Services
 {
+    /// <summary>
+    /// Сервис для работы с продавцами через ADO.NET
+    /// </summary>
     internal class AdoNetService : ISellerService
     {
         private readonly string _connectionString;
 
+        /// <summary>
+        /// Конструктор сервиса
+        /// </summary>
+        /// <param name="configuration">Конфигурация приложения</param>
         public AdoNetService(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection")
                 ?? throw new InvalidOperationException("Connection string not found");
         }
 
+        /// <summary>
+        /// Создает нового продавца
+        /// </summary>
+        /// <param name="seller">Данные продавца</param>
+        /// <returns>Созданный продавец</returns>
         public async Task<Seller> CreateSellerAsync(Seller seller)
         {
             const string sql = @"
@@ -47,6 +59,10 @@ namespace RetailNetworkConsole2.Services
             }
         }
 
+        /// <summary>
+        /// Возвращает всех продавцов
+        /// </summary>
+        /// <returns>Список продавцов</returns>
         public async Task<List<Seller>> ReadAllSellersAsync()
         {
             const string sql = "SELECT SellerID, LastName, FirstName, Patronymic, BirthDate, IsActive FROM Sellers";
@@ -78,12 +94,17 @@ namespace RetailNetworkConsole2.Services
             return sellers;
         }
 
+        /// <summary>
+        /// Возвращает продавца по ID
+        /// </summary>
+        /// <param name="id">ID продавца</param>
+        /// <returns>Продавец или null</returns>
         public async Task<Seller?> GetSellerByIdAsync(int id)
         {
             const string sql = @"
-        SELECT SellerID, LastName, FirstName, Patronymic, BirthDate, IsActive
-        FROM Sellers 
-        WHERE SellerID = @Id";
+                SELECT SellerID, LastName, FirstName, Patronymic, BirthDate, IsActive
+                FROM Sellers 
+                WHERE SellerID = @Id";
 
             using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand(sql, connection))
@@ -110,6 +131,11 @@ namespace RetailNetworkConsole2.Services
             return null;
         }
 
+        /// <summary>
+        /// Обновляет данные продавца
+        /// </summary>
+        /// <param name="seller">Новые данные продавца</param>
+        /// <returns>True - успешно, False - не обновлено</returns>
         public async Task<bool> UpdateSellerAsync(Seller seller)
         {
             const string sql = @"
@@ -137,6 +163,11 @@ namespace RetailNetworkConsole2.Services
             }
         }
 
+        /// <summary>
+        /// Удаляет продавца по ID
+        /// </summary>
+        /// <param name="id">ID продавца</param>
+        /// <returns>True - успешно, False - не удалено</returns>
         public async Task<bool> DeleteSellerAsync(int id)
         {
             const string sql = "DELETE FROM Sellers WHERE SellerID = @SellerID";

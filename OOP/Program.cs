@@ -8,6 +8,9 @@ namespace OOP
 {
     internal class Program
     {
+        /// <summary>
+        /// Главный метод программы
+        /// </summary>
         static void Main(string[] args)
         {
             try
@@ -37,6 +40,11 @@ namespace OOP
             }
         }
 
+        /// <summary>
+        /// Запрашивает у пользователя ввод строки
+        /// </summary>
+        /// <param name="prompt">Текст приглашения</param>
+        /// <returns>Введенная строка</returns>
         static string GetStringFromConsole(string prompt)
         {
             Console.Write(prompt);

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RetailNetworkConsole2.Models
 {
+    /// <summary>
+    /// Контактная информация продавца
+    /// </summary>
     internal class ContactInfo
     {
         public int SellerID { get; set; }

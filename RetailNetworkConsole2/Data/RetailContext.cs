@@ -8,6 +8,9 @@ using RetailNetworkConsole2.Models;
 
 namespace RetailNetworkConsole2.Data
 {
+    /// <summary>
+    /// Контекст базы данных для розничной сети
+    /// </summary>
     internal class RetailContext : DbContext
     {
         public RetailContext(DbContextOptions<RetailContext> options)

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RetailNetworkConsole2.Models
 {
+    /// <summary>
+    /// Связующая таблица между магазинами и продавцами (многие ко многим)
+    /// </summary>
     internal class ShopSeller
     {
         public int ShopID { get; set; }

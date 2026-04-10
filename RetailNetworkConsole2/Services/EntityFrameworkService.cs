@@ -10,15 +10,27 @@ using static RetailNetworkConsole.Program;
 
 namespace RetailNetworkConsole2.Services
 {
+    /// <summary>
+    /// Сервис для работы с продавцами через Entity Framework
+    /// </summary>
     internal class EntityFrameworkService : ISellerService
     {
         private readonly RetailContext _context;
 
+        /// <summary>
+        /// Конструктор сервиса
+        /// </summary>
+        /// <param name="context">Контекст базы данных</param>
         public EntityFrameworkService(RetailContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// Создает нового продавца
+        /// </summary>
+        /// <param name="seller">Данные продавца</param>
+        /// <returns>Созданный продавец</returns>
         public async Task<Seller> CreateSellerAsync(Seller seller)
         {
             _context.Add(seller);
@@ -26,18 +38,32 @@ namespace RetailNetworkConsole2.Services
             return seller;
         }
 
+        /// <summary>
+        /// Возвращает всех продавцов
+        /// </summary>
+        /// <returns>Список продавцов</returns>
         public async Task<List<Seller>> ReadAllSellersAsync()
         {
             return await _context.Sellers.ToListAsync();
         }
 
-        public async Task<Seller?> GetSellerByIdAsync (int id)
+        /// <summary>
+        /// Возвращает продавца по ID
+        /// </summary>
+        /// <param name="id">ID продавца</param>
+        /// <returns>Продавец или null</returns>
+        public async Task<Seller?> GetSellerByIdAsync(int id)
         {
             return await _context.Sellers
                 .FirstOrDefaultAsync(s => s.SellerID == id);
         }
 
-        public async Task<bool> UpdateSellerAsync (Seller seller)
+        /// <summary>
+        /// Обновляет данные продавца
+        /// </summary>
+        /// <param name="seller">Новые данные продавца</param>
+        /// <returns>True - успешно, False - не обновлено</returns>
+        public async Task<bool> UpdateSellerAsync(Seller seller)
         {
             var existing = await _context.Sellers.FindAsync(seller.SellerID);
             if (existing == null) return false;
@@ -52,6 +78,11 @@ namespace RetailNetworkConsole2.Services
             return true;
         }
 
+        /// <summary>
+        /// Удаляет продавца по ID
+        /// </summary>
+        /// <param name="id">ID продавца</param>
+        /// <returns>True - успешно, False - не удалено</returns>
         public async Task<bool> DeleteSellerAsync(int id)
         {
             var seller = await _context.Sellers.FindAsync(id);

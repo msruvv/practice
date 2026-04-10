@@ -7,6 +7,9 @@ using RetailNetworkConsole2.Models;
 
 namespace RetailNetworkConsole2
 {
+    /// <summary>
+    /// Интерфейс сервиса для работы с продавцами
+    /// </summary>
     internal interface ISellerService
     {
         Task<Seller> CreateSellerAsync(Seller seller);

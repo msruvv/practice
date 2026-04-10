@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RetailNetworkConsole2.Models
 {
+    /// <summary>
+    /// Отзыв о магазине
+    /// </summary>
     internal class Review
     {
         public Guid ReviewID { get; set; }

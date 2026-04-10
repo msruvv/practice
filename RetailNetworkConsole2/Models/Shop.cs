@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RetailNetworkConsole2.Models
 {
+    /// <summary>
+    /// Магазин
+    /// </summary>
     internal class Shop
     {
         public int ShopID { get; set; }

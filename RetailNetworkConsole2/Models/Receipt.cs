@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RetailNetworkConsole2.Models
 {
+    /// <summary>
+    /// Чек о продаже
+    /// </summary>
     internal class Receipt
     {
         public Guid ReceiptID { get; set; }

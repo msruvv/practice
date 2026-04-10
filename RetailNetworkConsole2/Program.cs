@@ -8,8 +8,14 @@ using RetailNetworkConsole2;
 
 namespace RetailNetworkConsole
 {
+    /// <summary>
+    /// Главный класс программы для демонстрации работы с ADO.NET и Entity Framework
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Главный метод программы
+        /// </summary>
         static async Task Main(string[] args)
         {
             Console.WriteLine("РАБОТА С БАЗОЙ ДАННЫХ\n");
@@ -39,6 +45,10 @@ namespace RetailNetworkConsole
             await RunCrudDemo(efService);
         }
 
+        /// <summary>
+        /// Запускает демонстрацию CRUD операций для сервиса продавцов
+        /// </summary>
+        /// <param name="service">Сервис для работы с продавцами</param>
         static async Task RunCrudDemo(ISellerService service)
         {
             try
@@ -120,6 +130,10 @@ namespace RetailNetworkConsole
             }
         }
 
+        /// <summary>
+        /// Показывает всех продавцов из базы данных
+        /// </summary>
+        /// <param name="service">Сервис для работы с продавцами</param>
         static async Task ShowAllSellersAsync(ISellerService service)
         {
             var sellers = await service.ReadAllSellersAsync();
@@ -136,6 +150,11 @@ namespace RetailNetworkConsole
             }
         }
 
+        /// <summary>
+        /// Показывает продавца по ID
+        /// </summary>
+        /// <param name="service">Сервис для работы с продавцами</param>
+        /// <param name="id">ID продавца</param>
         static async Task GetSellerByIdAsync(ISellerService service, int id)
         {
             var seller = await service.GetSellerByIdAsync(id);

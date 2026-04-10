@@ -7,23 +7,38 @@ using System.Threading.Tasks;
 
 namespace Task4
 {
+    /// <summary>
+    /// Умный стек
+    /// </summary>
+    /// <typeparam name="T">Тип элементов стека</typeparam>
     class SmartStack<T> : IEnumerable<T>
     {
         private T[] _items;
         private int _count;
 
+        /// <summary>
+        /// Создает пустой стек с емкостью 4
+        /// </summary>
         public SmartStack()
         {
             _items = new T[4];
             _count = 0;
         }
 
+        /// <summary>
+        /// Создает пустой стек с указанной емкостью
+        /// </summary>
+        /// <param name="capacity">Начальная емкость стека</param>
         public SmartStack(int capacity)
         {
             _items = new T[capacity];
             _count = 0;
         }
 
+        /// <summary>
+        /// Создает стек и заполняет его элементами из коллекции
+        /// </summary>
+        /// <param name="collection">Коллекция элементов</param>
         public SmartStack(IEnumerable<T> collection)
         {
             int count = 0;
@@ -42,10 +57,20 @@ namespace Task4
             }
         }
 
+        /// <summary>
+        /// Количество элементов в стеке
+        /// </summary>
         public int Count => _count;
 
+        /// <summary>
+        /// Текущая емкость стека
+        /// </summary>
         public int Capacity => _items.Length;
 
+        /// <summary>
+        /// Добавляет элемент в стек
+        /// </summary>
+        /// <param name="item">Добавляемый элемент</param>
         public void Push(T item)
         {
             if (_count == _items.Length)
@@ -56,6 +81,10 @@ namespace Task4
             _items[_count++] = item;
         }
 
+        /// <summary>
+        /// Добавляет несколько элементов в стек
+        /// </summary>
+        /// <param name="collection">Коллекция элементов</param>
         public void PushRange(IEnumerable<T> collection)
         {
             int itemsToAdd = 0;
@@ -81,6 +110,11 @@ namespace Task4
             }
         }
 
+        /// <summary>
+        /// Извлекает верхний элемент из стека
+        /// </summary>
+        /// <returns>Верхний элемент</returns>
+        /// <exception cref="InvalidOperationException">Стек пуст</exception>
         public T Pop()
         {
             if (_count == 0)
@@ -93,6 +127,11 @@ namespace Task4
             return item;
         }
 
+        /// <summary>
+        /// Возвращает верхний элемент без его удаления
+        /// </summary>
+        /// <returns>Верхний элемент</returns>
+        /// <exception cref="InvalidOperationException">Стек пуст</exception>
         public T Peek()
         {
             if (_count == 0)
@@ -103,6 +142,11 @@ namespace Task4
             return _items[_count - 1];
         }
 
+        /// <summary>
+        /// Проверяет, содержится ли элемент в стеке
+        /// </summary>
+        /// <param name="item">Искомый элемент</param>
+        /// <returns>True - элемент найден, False - не найден</returns>
         public bool Contains(T item)
         {
             for (var i = 0; i < _count; i++)
@@ -115,6 +159,11 @@ namespace Task4
             return false;
         }
 
+        /// <summary>
+        /// Индексатор для доступа к элементам стека
+        /// </summary>
+        /// <param name="index">Индекс элемента</param>
+        /// <returns>Элемент по индексу</returns>
         public T this[int index]
         {
             get
@@ -138,6 +187,10 @@ namespace Task4
             }
         }
 
+        /// <summary>
+        /// Возвращает перечислитель элементов стека
+        /// </summary>
+        /// <returns>Перечислитель</returns>
         public IEnumerator<T> GetEnumerator()
         {
             for (var i = _count - 1; i >= 0; i--)

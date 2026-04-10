@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RetailNetworkConsole2.Models
 {
+    /// <summary>
+    /// Продавец
+    /// </summary>
     internal class Seller
     {
         private DateTime _birthDate;

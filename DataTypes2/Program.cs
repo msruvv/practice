@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace DataTypes2
 {
+    /// <summary>
+    /// Программа для рисования ромба из символов X
+    /// </summary>
     internal class Program
     {
         private const int DiamontSize = 5;
 
+        /// <summary>
+        /// Создает двумерный массив для ромба
+        /// </summary>
+        /// <param name="n">Размер ромба</param>
+        /// <returns>Двумерный массив символов</returns>
         private static char[][] CreateDiamond(int n)
         {
             int middle = n / 2;
@@ -35,9 +43,13 @@ namespace DataTypes2
             return diamond;
         }
 
-        public static void PrintDiamond(int N)
+        /// <summary>
+        /// Выводит ромб в консоль
+        /// </summary>
+        /// <param name="n">Размер ромба</param>
+        public static void PrintDiamond(int n)
         {
-            var diamond = CreateDiamond(N);
+            var diamond = CreateDiamond(n);
 
             for (var row = 0; row < diamond.Length; row++)
             {
@@ -50,6 +62,9 @@ namespace DataTypes2
             }
         }
 
+        /// <summary>
+        /// Главный метод программы
+        /// </summary>
         static void Main(string[] args)
         {
             PrintDiamond(DiamontSize);
